@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="com.essential.web" />
+
+	<!-- Swagger providers -->
+	<bean id="apiDeclarationProvider"
+		class="com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider" />
+	<bean id="resourceListingProvider"
+		class="com.wordnik.swagger.jaxrs.listing.ResourceListingProvider" />
+
+	<!-- Swagger API listing resource -->
+	<bean id="swaggerResourceJSON"
+		class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON" />
+
+	<!-- resource -->
+	<bean class="com.essential.web.rest.TestResource" />
+	<bean class="com.essential.web.rest.AreaResource" />
+	<bean class="com.essential.web.rest.MomentResource" />
+	<bean class="com.essential.web.rest.ReplyResource" />
+	<bean class="com.essential.web.rest.TagResource" />
+	<bean class="com.essential.web.rest.TipResource" />
+	<bean class="com.essential.web.rest.UserResource" />
+	<bean class="com.essential.web.rest.VenueResource" />
+	<bean class="com.essential.web.rest.VoteResource" />
+	<bean class="com.essential.web.rest.AppResource" />
+
+	<!-- entities -->
+	<bean class="com.essential.entities.Moment" />
+	<bean class="com.essential.entities.MomentReply" />
+	<bean class="com.essential.entities.VenueTag" />
+	<bean class="com.essential.entities.User" />
+	<bean class="com.essential.entities.Venue" />
+	<bean class="com.essential.entities.Vote" />
+
+	<bean class="com.essential.web.interceptor.BaseExceptionMapper" />
+	<bean class="com.essential.web.interceptor.AuthFilter" />
+	<bean class="com.essential.web.extend.JacksonJsonProvider"></bean>
+
+	<!-- this scans the classes for resources -->
+	<bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
+		<property name="resourcePackage" value="com.essential.web.rest" />
+		<property name="version" value="1.0.0" />
+		<property name="title" value="Essential Web Service-UI-Docs-Testing" />
+		<property name="description" value="This is a api extension." />
+		<property name="contact" value="java.server@essential.cc" />
+		<property name="license" value="Apache 2.0 License" />
+		<property name="licenseUrl"
+			value="http://www.apache.org/licenses/LICENSE-2.0.html" />
+		<property name="scan" value="true" />
+	</bean>
+
+</beans>
