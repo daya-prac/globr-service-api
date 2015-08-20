@@ -1,4 +1,4 @@
-package io.bluerain.blobr.web.interceptor;
+package io.bluerain.globr.web.interceptor;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package io.bluerain.blobr.web.core;
+package io.bluerain.globr.web.core;
 
 import com.wordnik.swagger.config.ConfigFactory;
 

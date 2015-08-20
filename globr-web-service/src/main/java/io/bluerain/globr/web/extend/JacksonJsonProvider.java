@@ -1,4 +1,4 @@
-package io.bluerain.blobr.web.extend;
+package io.bluerain.globr.web.extend;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

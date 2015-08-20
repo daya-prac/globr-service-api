@@ -1,4 +1,4 @@
-package io.bluerain.blobr.web.extend;
+package io.bluerain.globr.web.extend;
 
 import org.codehaus.jackson.map.JsonSerializer;
 
