@@ -55,7 +55,7 @@ public class Search {
                             String title = titleDom.html();
                             sr = new SearchResult();
                             sr.setTitle(title);
-                            sr.setLink(link);
+                            sr.setLink(getRealLink(link));
                             srs.add(sr);
                         }
                     }
