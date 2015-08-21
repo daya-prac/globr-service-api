@@ -5,11 +5,32 @@
     <parent>
         <artifactId>globr</artifactId>
         <groupId>bluerain.io</groupId>
-        <version>0.0.1-snapshort</version>
+        <version>0.0.1-release</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>globr-entity</artifactId>
+
+    <dependencies>
+        <!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.wordnik</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>

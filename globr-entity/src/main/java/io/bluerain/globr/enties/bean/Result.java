@@ -1,71 +1,73 @@
 package io.bluerain.globr.enties.bean;
 
-public class Result {
+import java.io.Serializable;
 
-	public static final String SUCCESS = "SUCCESS";
-	private int code;
-	private String message;
-	private String devMessage;
-	private Object attachData;
+public class Result implements Serializable {
 
-	public Result(int code, String message, String devMessage, Object attachData) {
-		super();
-		this.code = code;
-		this.message = message;
-		this.devMessage = devMessage;
-		this.attachData = attachData;
-	}
+    public static final String SUCCESS = "SUCCESS";
+    private int code;
+    private String message;
+    private String devMessage;
+    private Object attachData;
 
-	public Result(int code, String message) {
-		super();
-		this.code = code;
-		this.message = message;
-	}
+    public Result(int code, String message, String devMessage, Object attachData) {
+        super();
+        this.code = code;
+        this.message = message;
+        this.devMessage = devMessage;
+        this.attachData = attachData;
+    }
 
-	public Result(int code, String message, String devMessage) {
-		super();
-		this.code = code;
-		this.message = message;
-		this.devMessage = devMessage;
-	}
+    public Result(int code, String message) {
+        super();
+        this.code = code;
+        this.message = message;
+    }
 
-	public Result() {
-		super();
-	}
+    public Result(int code, String message, String devMessage) {
+        super();
+        this.code = code;
+        this.message = message;
+        this.devMessage = devMessage;
+    }
 
-	public int getCode() {
-		return code;
-	}
+    public Result() {
+        super();
+    }
 
-	public void setCode(int code) {
-		this.code = code;
-	}
+    public int getCode() {
+        return code;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public void setCode(int code) {
+        this.code = code;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public String getDevMessage() {
-		return devMessage;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public void setDevMessage(String devMessage) {
-		this.devMessage = devMessage;
-	}
+    public String getDevMessage() {
+        return devMessage;
+    }
 
-	public Object getAttachData() {
-		return attachData;
-	}
+    public void setDevMessage(String devMessage) {
+        this.devMessage = devMessage;
+    }
 
-	public void setAttachData(Object attachData) {
-		this.attachData = attachData;
-	}
+    public Object getAttachData() {
+        return attachData;
+    }
 
-	public static Result SUCCESS() {
-		return new Result(0, SUCCESS);
-	}
+    public void setAttachData(Object attachData) {
+        this.attachData = attachData;
+    }
+
+    public static Result SUCCESS() {
+        return new Result(0, SUCCESS);
+    }
 }
