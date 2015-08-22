@@ -9,6 +9,7 @@ public class SearchResult {
     private String title;
     private String link;
     private String content;
+    private String domain;
 
     public String getTitle() {
         return title;
@@ -32,5 +33,13 @@ public class SearchResult {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 }

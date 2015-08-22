@@ -55,7 +55,10 @@ public class Search {
                         SearchResult sr = null;
                         for (Element r : rs) {
                             sr = new SearchResult();
-                            Element titleDom = r.getElementsByTag("h3").get(0).getElementsByTag("a").get(0);
+                            Elements tempH3Dom, tempADom;
+                            if ((tempH3Dom = r.getElementsByTag("h3")).size() == 0 || (tempADom = tempH3Dom.get(0).getElementsByTag("a")).size() == 0)
+                                continue;//如果出现非标准结构[略过]
+                            Element titleDom = tempADom.get(0);
                             Elements contentTemp = r.getElementsByClass("st");
                             if (!Obj.notNullOrEmpty(contentTemp)) //图片结果[略过]
                                 continue;
@@ -63,6 +66,7 @@ public class Search {
                             sr.setTitle(titleDom.html());
                             sr.setLink(getRealLink(titleDom.attr("href")));
                             sr.setContent(contentDom.html());
+                            sr.setDomain(Str.match(sr.getLink(), "https?://([^/]+)", 1));
                             srs.add(sr);
                         }
                     }
