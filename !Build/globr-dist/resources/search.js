@@ -1,16 +1,17 @@
 $(function () {
     var pagNum = getUrlParam('pagNum');
-    if (pagNum && pagNum > 0) {
-        var $cur;
-        if (pagNum > 5) {
-            $cur = $('a[index=0]');
-            $cur.text(pagNum);
-            $cur.addClass('selected');
-        } else {
-            $cur = $('a[index=' + pagNum + ']');
-            $cur.addClass('selected');
-            $cur.removeAttr('href');
-        }
+    if (!pagNum) {
+        pagNum = 1;
+    }
+    var $cur;
+    if (pagNum > 5) {
+        $cur = $('a[index=0]');
+        $cur.text(pagNum);
+        $cur.addClass('selected');
+    } else {
+        $cur = $('a[index=' + pagNum + ']');
+        $cur.addClass('selected');
+        $cur.removeAttr('href');
     }
 });
 

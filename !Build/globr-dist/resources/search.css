@@ -1,14 +1,19 @@
+html {
+    font-family: Microsoft YaHei;
+}
 body {
-    background: #e1e1e1;
+    background-image: url(img/dandelion.jpg);
     min-height: 100%;
     margin: auto;
+    background-attachment: fixed;
 }
 #container {
     position: relative
 }
 .card {
+    opacity: 0.9;
     background: #fff;
-    width: 68%;
+    width: 48%;
     position: relative;
     margin: 2em 2em;
     padding: 15px;
@@ -38,7 +43,7 @@ body {
     margin: 0 0 15px 0;
 }
 .card p.card-title {
-    font-size: 28px;
+    font-size: 20px;
 }
 .card p.url {
     border-top: 1px solid #e5e5e5;
@@ -70,10 +75,10 @@ body {
 }
 .page {
     color: #8B8B8B;
-    font-size: 17px;
+    font-size: 15px;
     font-family: sans-serif;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 2%;
 }
 .page.selected {
     color: #04bff4;
