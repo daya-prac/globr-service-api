@@ -8,6 +8,7 @@ public class SearchResult {
 
     private String title;
     private String link;
+    private String content;
 
     public String getTitle() {
         return title;
@@ -23,5 +24,13 @@ public class SearchResult {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

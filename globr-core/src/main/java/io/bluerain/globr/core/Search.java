@@ -4,11 +4,13 @@ import io.bluerain.aclient.attach.IndieParam;
 import io.bluerain.aclient.core.Response;
 import io.bluerain.aclient.core.Result;
 import io.bluerain.aclient.core.method.HttpGet;
-import io.bluerain.aclient.ua.Chrome;
+import io.bluerain.aclient.ua.UA;
+import io.bluerain.core.Obj;
 import io.bluerain.core.Str;
 import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SearchResult;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -22,40 +24,45 @@ import java.util.List;
  */
 public class Search {
 
-    public static List<SearchResult> by(String keyword) {
+    public static List<SearchResult> by(String keyword, int pagNum) {
         Search search = new Search();
-        return search.byKeyword(keyword);
+        return search.byKeyword(keyword, pagNum);
     }
 
-    public List<SearchResult> byKeyword(String keyword) {
+    public List<SearchResult> byKeyword(String keyword, int pagNum) {
+        int start = getStart(pagNum);
         final List<SearchResult> srs = new ArrayList<>();
         System.setProperty("proxySet", "true");
         System.setProperty("socksProxyHost", "127.0.0.1");
         System.setProperty("socksProxyPort", "1080");
-        String url = "https://www.google.com/search?q=" +
-                keyword +
-                "&sourceid=chrome&ie=UTF-8";
+
+        String url = "https://www.google.com/search?" +
+                "q=" + keyword +
+                "&safe=off&prmd=ivns" +
+                "&start=" + start +
+                "&gws_rd=cr";
         HttpGet get = HttpGet.create(url);
         IndieParam ps = IndieParam.builder();
         get
-                .userAgent(Chrome.WINDOWS_PHONE)
-//                .param(ps)
+                .userAgent(UA.WindowsPhone7_5)
+                .param(ps)
                 .request()
                 .result(new Result() {
                     @Override
                     public void success(String body, Response response) {
-                        Document dom = response.readDom();
-                        Element domBody = dom.body();
+                        Document doc = response.readDom();
+                        Elements rs = doc.getElementsByClass("g");
                         SearchResult sr = null;
-                        for (Element e : domBody.getElementsByAttributeValue("style", "clear:both")) {
-                            if (e.children().size() == 0)
-                                continue;
-                            Element titleDom = e.child(0);
-                            String link = titleDom.attr("href");
-                            String title = titleDom.html();
+                        for (Element r : rs) {
                             sr = new SearchResult();
-                            sr.setTitle(title);
-                            sr.setLink(getRealLink(link));
+                            Element titleDom = r.getElementsByTag("h3").get(0).getElementsByTag("a").get(0);
+                            Elements contentTemp = r.getElementsByClass("st");
+                            if (!Obj.notNullOrEmpty(contentTemp)) //图片结果[略过]
+                                continue;
+                            Element contentDom = contentTemp.get(0);
+                            sr.setTitle(titleDom.html());
+                            sr.setLink(getRealLink(titleDom.attr("href")));
+                            sr.setContent(contentDom.html());
                             srs.add(sr);
                         }
                     }
@@ -68,21 +75,26 @@ public class Search {
         return srs;
     }
 
+    private int getStart(int pagNum) {
+        int start;
+        if (pagNum <= 1)
+            pagNum = 1;
+        if (pagNum == 1)
+            start = 0;
+        else
+            start = (pagNum - 1) * 10;
+        return start;
+    }
+
     private String getRealLink(String href) {
 
-        String source;
         try {
-            source = URLDecoder.decode(href, "UTF-8");
             href = URLDecoder.decode(href, "UTF-8");
             //匹配真实url
-            href = Str.match(href, "q=http://www.google.com/gwt/x\\?hl=en&u=((.(?!&source))*.)", 1);
+            href = Str.match(href, "q=((.(?!&sa))*.)", 1);
 
             //截取encoder之后的参数
             if (!Str.notNullOrEmpty(href)) { //如果匹配为空
-                href = Str.match(source, "q=http://googleweblight.com/?lite_url=((.(?!&ei))*.)", 1);
-                if (href == null) {
-                    href = Str.match(source, "q=((.(?!&sa))*.)", 1);
-                }
             } else {
                 String p = URLEncoder.encode("?", "UTF-8");
                 if (href.contains(p)) {

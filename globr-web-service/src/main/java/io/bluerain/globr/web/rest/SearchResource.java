@@ -2,6 +2,7 @@ package io.bluerain.globr.web.rest;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import io.bluerain.globr.core.Search;
 import io.bluerain.globr.web.core.RepBuilder;
 
@@ -21,7 +22,10 @@ public class SearchResource {
 
     @GET
     @ApiOperation(value = "根据关键字获取搜索结果")
-    public Response index(@QueryParam("keyword") String keyword) {
-        return RepBuilder.build(Search.by(keyword));
+    public Response index(@ApiParam(value = "关键字", defaultValue = "呵呵哒") @QueryParam("keyword") String keyword,
+                          @ApiParam(value = "页数", defaultValue = "1") @QueryParam("pagNum") Integer pagNUm) {
+        if (pagNUm == null)
+            pagNUm = 0;
+        return RepBuilder.build(Search.by(keyword, pagNUm));
     }
 }
