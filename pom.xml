@@ -6,7 +6,7 @@
 
     <groupId>bluerain.io</groupId>
     <artifactId>globr</artifactId>
-    <version>0.0.2-release</version>
+    <version>0.0.3-snapshot</version>
     <modules>
         <module>globr-web-service</module>
         <module>globr-entity</module>
