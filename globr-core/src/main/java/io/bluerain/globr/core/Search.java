@@ -32,6 +32,9 @@ public class Search {
     public List<SearchResult> byKeyword(String keyword, int pagNum) {
         int start = getStart(pagNum);
         final List<SearchResult> srs = new ArrayList<>();
+        System.setProperty("proxySet", "true");
+        System.setProperty("socksProxyHost", "127.0.0.1");
+        System.setProperty("socksProxyPort", "1080");
 
         String url = "https://www.google.com/search?" +
                 "q=" + keyword +
