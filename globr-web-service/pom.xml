@@ -25,7 +25,6 @@
             <artifactId>cors-filter</artifactId>
         </dependency>
         <!-- swagger -->
-        <!-- swagger -->
         <dependency>
             <groupId>com.wordnik</groupId>
             <artifactId>swagger-jersey2-jaxrs_2.10</artifactId>
@@ -44,7 +43,6 @@
         <dependency>
             <groupId>com.wordnik</groupId>
             <artifactId>swagger-jaxrs_2.11</artifactId>
-            <version>1.3.12</version>
         </dependency>
         <!-- JBoss RESTEasy -->
         <dependency>
