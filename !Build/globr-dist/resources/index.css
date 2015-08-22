@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    text-align: center;
+    background: #222;
+    color: #999;
+    font-size: 24px;
+    font-family: sans-serif;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.container {
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    right: 0;
+    left: 0;
+}
+#keyword {
+    font-size: 24px;
+    border: 0;
+    width: 100%;
+    max-width: 300px;
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    text-align: center;
+    color: #222;
+}

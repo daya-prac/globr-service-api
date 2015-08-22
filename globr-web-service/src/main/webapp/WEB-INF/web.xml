@@ -1,7 +1,61 @@
-<!DOCTYPE web-app PUBLIC
-        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+    <display-name>Restful Web Application</display-name>
 
-<web-app>
-    <display-name>GloBr Web Service Application</display-name>
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:spring-rest.xml</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <url-pattern>/api-docs/*</url-pattern>
+    </servlet-mapping>
+    <!-- 定义Filter -->
+    <filter>
+        <filter-name>codingFilter</filter-name>
+        <filter-class>io.bluerain.globr.web.interceptor.CodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>codingFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+
+    <context-param>
+        <param-name>resteasy.providers</param-name>
+        <param-value>org.jboss.resteasy.plugins.providers.jackson.JacksonJsonpInterceptor</param-value>
+    </context-param>
+
+    <!-- <context-param> -->
+    <!-- <param-name>resteasy.providers</param-name> -->
+    <!-- <param-value>com.essential.web.interceptor.CorsInterceptor</param-value> -->
+    <!-- </context-param> -->
+    <filter>
+        <filter-name>CORS</filter-name>
+        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

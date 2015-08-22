@@ -5,7 +5,7 @@
     <parent>
         <artifactId>globr</artifactId>
         <groupId>bluerain.io</groupId>
-        <version>0.0.1-snapshort</version>
+        <version>0.0.4-snapshot</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,6 +15,10 @@
         <dependency>
             <groupId>io.bluerain.client</groupId>
             <artifactId>aclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>bluerain.io</groupId>
+            <artifactId>globr-entity</artifactId>
         </dependency>
     </dependencies>
 
