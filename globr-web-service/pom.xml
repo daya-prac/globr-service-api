@@ -25,25 +25,26 @@
             <artifactId>cors-filter</artifactId>
         </dependency>
         <!-- swagger -->
+        <!-- swagger -->
         <dependency>
             <groupId>com.wordnik</groupId>
-            <artifactId>swagger-jersey-jaxrs_2.10</artifactId>
-            <version>${swagger.version}</version>
+            <artifactId>swagger-jersey2-jaxrs_2.10</artifactId>
+            <version>1.3.12</version>
         </dependency>
         <dependency>
             <groupId>com.wordnik</groupId>
-            <artifactId>swagger-annotations_2.10</artifactId>
-            <version>${swagger.annotations.version}</version>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.3-M1</version>
         </dependency>
         <dependency>
             <groupId>com.wordnik</groupId>
-            <artifactId>swagger-core_2.10</artifactId>
-            <version>${swagger.version}</version>
+            <artifactId>swagger-core_2.11</artifactId>
+            <version>1.3.12</version>
         </dependency>
         <dependency>
             <groupId>com.wordnik</groupId>
-            <artifactId>swagger-jaxrs_2.10</artifactId>
-            <version>${swagger.version}</version>
+            <artifactId>swagger-jaxrs_2.11</artifactId>
+            <version>1.3.12</version>
         </dependency>
         <!-- JBoss RESTEasy -->
         <dependency>
