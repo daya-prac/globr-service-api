@@ -3,6 +3,9 @@ body {
     min-height: 100%;
     margin: auto;
 }
+#container {
+    position: relative
+}
 .card {
     background: #fff;
     width: 68%;
@@ -23,6 +26,13 @@ body {
     width: 20%;
     right: 0;
     top: 0;
+}
+.card.search {
+    position: absolute;
+    margin: 2em 5px;
+    width: 20%;
+    right: 0;
+    bottom: 0;
 }
 .card p {
     margin: 0 0 15px 0;
@@ -50,4 +60,9 @@ body {
 .card img.full {
     width: 430px;
     margin: 0 0 15px -15px;
+}
+#keyword {
+    width: 80%;
+    border: none;
+    outline: medium;
 }
