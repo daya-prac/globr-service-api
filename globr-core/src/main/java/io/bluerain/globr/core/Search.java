@@ -39,13 +39,13 @@ public class Search {
                 "q=" + keyword +
                 "&safe=off&prmd=ivns" +
                 "&start=" + start +
-                "&gws_rd=cr";
+                "&gws_rd=cr" +
+                "&hl=zh_CN";
         HttpGet get = HttpGet.create(url);
         IndieParam ps = IndieParam.builder();
         get
                 .userAgent(UA.WindowsPhone7_5)
                 .param(ps)
-                .language(Language.en_US)
                 .request()
                 .result(new Result() {
                     @Override

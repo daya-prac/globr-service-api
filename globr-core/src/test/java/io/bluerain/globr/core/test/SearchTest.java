@@ -12,7 +12,7 @@ public class SearchTest {
 
     @Test
     public void testSearch() {
-        for (SearchResult r : Search.by("呵呵哒", 1)) {
+        for (SearchResult r : Search.by("123", 1)) {
             System.out.println(r.getTitle() + ":" + r.getLink());
         }
     }
