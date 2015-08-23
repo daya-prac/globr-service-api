@@ -38,7 +38,8 @@ public class Search {
                 "q=" + keyword +
                 "&safe=off&prmd=ivns" +
                 "&start=" + start +
-                "&gws_rd=cr";
+                "&gws_rd=cr" +
+                "&hl=en";
         HttpGet get = HttpGet.create(url);
         IndieParam ps = IndieParam.builder();
         get
