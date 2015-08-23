@@ -1,6 +1,7 @@
 package io.bluerain.globr.core;
 
 import io.bluerain.aclient.attach.IndieParam;
+import io.bluerain.aclient.attach.Language;
 import io.bluerain.aclient.core.Response;
 import io.bluerain.aclient.core.Result;
 import io.bluerain.aclient.core.method.HttpGet;
@@ -38,13 +39,13 @@ public class Search {
                 "q=" + keyword +
                 "&safe=off&prmd=ivns" +
                 "&start=" + start +
-                "&gws_rd=cr" +
-                "&hl=en";
+                "&gws_rd=cr";
         HttpGet get = HttpGet.create(url);
         IndieParam ps = IndieParam.builder();
         get
                 .userAgent(UA.WindowsPhone7_5)
                 .param(ps)
+                .language(Language.en_US)
                 .request()
                 .result(new Result() {
                     @Override
