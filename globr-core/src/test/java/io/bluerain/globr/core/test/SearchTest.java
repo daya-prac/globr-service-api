@@ -12,8 +12,8 @@ public class SearchTest {
 
     @Test
     public void testSearch() {
-        for (SearchResult r : Search.by("123", 1)) {
-            System.out.println(r.getTitle() + ":" + r.getLink());
+        for (String r : Search.by("呵呵哒", 1).getRelatedKeys()) {
+            System.out.println(r);
         }
     }
 }

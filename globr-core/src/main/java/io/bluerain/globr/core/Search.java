@@ -9,6 +9,7 @@ import io.bluerain.aclient.ua.UA;
 import io.bluerain.core.Obj;
 import io.bluerain.core.Str;
 import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SearchResult;
+import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SingleResult;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -25,15 +26,19 @@ import java.util.List;
  */
 public class Search {
 
-    public static List<SearchResult> by(String keyword, int pagNum) {
+    public static SearchResult by(String keyword, int pagNum) {
         Search search = new Search();
         return search.byKeyword(keyword, pagNum);
     }
 
-    public List<SearchResult> byKeyword(String keyword, int pagNum) {
+    public SearchResult byKeyword(String keyword, int pagNum) {
         int start = getStart(pagNum);
-        final List<SearchResult> srs = new ArrayList<>();
-//        startProxy();
+
+        //创建返回结果Bean结构
+        final SearchResult result = new SearchResult();
+        final List<SingleResult> srs = new ArrayList<>();
+        result.setList(srs);
+        startProxy();
 
         String url = "https://www.google.com/search?" +
                 "q=" + keyword +
@@ -52,9 +57,9 @@ public class Search {
                     public void success(String body, Response response) {
                         Document doc = response.readDom();
                         Elements rs = doc.getElementsByClass("g");
-                        SearchResult sr = null;
-                        for (Element r : rs) {
-                            sr = new SearchResult();
+                        SingleResult sr = null;
+                        for (Element r : rs) { //获取条目列表
+                            sr = new SingleResult();
                             Elements tempH3Dom, tempADom;
                             if ((tempH3Dom = r.getElementsByTag("h3")).size() == 0 || (tempADom = tempH3Dom.get(0).getElementsByTag("a")).size() == 0)
                                 continue;//如果出现非标准结构[略过]
@@ -71,6 +76,16 @@ public class Search {
                             sr.setDomain(Str.match(sr.getLink(), "https?://([^/]+)", 1));
                             srs.add(sr);
                         }
+                        //获取相关关键字
+                        Elements relatedKeys = doc.getElementsByAttributeValue("valign", "top");
+                        if (Obj.notNullOrEmpty(relatedKeys)) {
+                            int index = 1;
+                            for (Element keyStr : relatedKeys) {
+                                if (index != relatedKeys.size())
+                                    result.getRelatedKeys().add(keyStr.text());
+                                index++;
+                            }
+                        }
                     }
 
                     @Override
@@ -78,7 +93,7 @@ public class Search {
                         System.out.printf(body);
                     }
                 });
-        return srs;
+        return result;
     }
 
     private void startProxy() {

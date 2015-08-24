@@ -1,45 +1,31 @@
 package io.bluerain.globr.enties.bean.io.bluerain.globr.enties;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by foredawn on 15-8-22.
  * 搜索结果
  */
 public class SearchResult {
 
-    private String title;
-    private String link;
-    private String content;
-    private String domain;
+    private List<SingleResult> list = new ArrayList<>();
+    private List<String> relatedKeys = new ArrayList<>();
 
-    public String getTitle() {
-        return title;
+
+    public List<String> getRelatedKeys() {
+        return relatedKeys;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setRelatedKeys(List<String> relatedKeys) {
+        this.relatedKeys = relatedKeys;
     }
 
-    public String getLink() {
-        return link;
+    public List<SingleResult> getList() {
+        return list;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getDomain() {
-        return domain;
-    }
-
-    public void setDomain(String domain) {
-        this.domain = domain;
+    public void setList(List<SingleResult> list) {
+        this.list = list;
     }
 }

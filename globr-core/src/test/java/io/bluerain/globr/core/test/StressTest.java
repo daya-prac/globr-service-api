@@ -10,13 +10,5 @@ import org.junit.Test;
  */
 public class StressTest {
 
-    @Test
-    public void test() {
-        for (int i = 1; i <= 10; i++) {
-            for (SearchResult sr : Search.by("逗你哇", i)) {
-                System.out.println(sr.getTitle());
-            }
-        }
-    }
 
 }

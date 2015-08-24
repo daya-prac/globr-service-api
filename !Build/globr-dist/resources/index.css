@@ -4,8 +4,6 @@
 }
 body {
     text-align: center;
-    background: #222;
-    color: #999;
     font-size: 24px;
     position: absolute;
     top: 0;
@@ -21,6 +19,7 @@ body {
     left: 0;
 }
 #keyword {
+    font-family: Microsoft YaHei;
     font-size: 24px;
     border: 0;
     width: 100%;
@@ -30,4 +29,5 @@ body {
     padding: 10px;
     text-align: center;
     color: #222;
+    outline: medium;
 }
