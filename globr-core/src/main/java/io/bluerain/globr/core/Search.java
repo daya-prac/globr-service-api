@@ -38,7 +38,7 @@ public class Search {
         final SearchResult result = new SearchResult();
         final List<SingleResult> srs = new ArrayList<>();
         result.setList(srs);
-        startProxy();
+//        startProxy();
 
         String url = "https://www.google.com/search?" +
                 "q=" + keyword +
