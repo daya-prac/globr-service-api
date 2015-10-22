@@ -9,7 +9,7 @@ GloBr-Service-Api
 
 被额外依赖项目:(需要自行导入项目或者添加本地jar)
 
-[bluerain-commons](https://github.com/HentaiMew/bluerain-commons)|
+[bluerain-commons](https://github.com/HentaiMew/bluerain-commons) |
 [rebr-client](https://github.com/HentaiMew/rebr-client.git)
 
 包含的是以下依赖项:
