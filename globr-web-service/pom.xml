@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>globr</artifactId>
-        <groupId>bluerain.io</groupId>
+        <artifactId>globr-service-api</artifactId>
+        <groupId>io.bluerain.globr</groupId>
         <version>0.1.1-snapshot</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -11,13 +11,13 @@
     <dependencies>
         <!--core-->
         <dependency>
-            <groupId>bluerain.io</groupId>
+            <groupId>io.bluerain.globr</groupId>
             <artifactId>globr-core</artifactId>
         </dependency>
-        <!--aclient-->
+        <!--commons-->
         <dependency>
-            <groupId>io.bluerain.client</groupId>
-            <artifactId>aclient</artifactId>
+            <groupId>io.bluerain.utils</groupId>
+            <artifactId>commons</artifactId>
         </dependency>
         <!--cors-->
         <dependency>

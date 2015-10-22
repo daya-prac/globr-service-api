@@ -1,11 +1,9 @@
-import io.bluerain.aclient.attach.IndieParam;
-import io.bluerain.aclient.core.Response;
-import io.bluerain.aclient.core.Result;
-import io.bluerain.aclient.core.method.HttpGet;
-import io.bluerain.aclient.ua.Chrome;
-import io.bluerain.aclient.ua.UA;
 import io.bluerain.core.Obj;
 import io.bluerain.core.Str;
+import io.bluerain.http.core.UserAgent;
+import io.bluerain.http.response.HttpResponse;
+import io.bluerain.http.rest.handler.ResultHandler;
+import io.bluerain.http.rest.method.HttpGet;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -32,7 +30,7 @@ public class ProxyTest {
                 "&safe=off&prmd=ivns" +
                 "&start=0" +
                 "&gws_rd=cr";
-        HttpGet get = HttpGet.create(url);
+        /*HttpGet get = HttpGet.create(url);
         IndieParam ps = IndieParam.builder();
         get
                 .userAgent(UA.WindowsPhone7_5)
@@ -41,6 +39,19 @@ public class ProxyTest {
                 .result(new Result() {
                     @Override
                     public void success(String body, Response response) {
+                    }
+
+                    @Override
+                    public void error(String body, javax.ws.rs.core.Response response) {
+                        System.out.printf(body);
+                    }
+                });*/
+        HttpGet.create(url)
+                .userAgent(UserAgent.WP_75)
+                .exe()
+                .handle(new ResultHandler() {
+                    @Override
+                    public void success(HttpResponse response, String body) {
                         Document doc = response.readDom();
                         Elements rs = doc.getElementsByClass("g");
                         for (Element r : rs) {
@@ -48,7 +59,7 @@ public class ProxyTest {
                             Elements contentTemp = r.getElementsByClass("st");
                             if (!Obj.notNullOrEmpty(contentTemp)) //图片结果[略过]
                                 continue;
-                            Element contentDom =contentTemp.get(0);
+                            Element contentDom = contentTemp.get(0);
                             System.out.println(getRealLink(titleDom.attr("href")));
                             System.out.println(titleDom.html());
                             System.out.println(contentDom.html());
@@ -56,8 +67,8 @@ public class ProxyTest {
                     }
 
                     @Override
-                    public void error(String body, javax.ws.rs.core.Response response) {
-                        System.out.printf(body);
+                    public void error(HttpResponse response, int code, String body) {
+
                     }
                 });
     }

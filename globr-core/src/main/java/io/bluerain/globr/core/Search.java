@@ -1,15 +1,13 @@
 package io.bluerain.globr.core;
 
-import io.bluerain.aclient.attach.IndieParam;
-import io.bluerain.aclient.attach.Language;
-import io.bluerain.aclient.core.Response;
-import io.bluerain.aclient.core.Result;
-import io.bluerain.aclient.core.method.HttpGet;
-import io.bluerain.aclient.ua.UA;
 import io.bluerain.core.Obj;
 import io.bluerain.core.Str;
 import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SearchResult;
 import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SingleResult;
+import io.bluerain.http.core.UserAgent;
+import io.bluerain.http.response.HttpResponse;
+import io.bluerain.http.rest.handler.ResultHandler;
+import io.bluerain.http.rest.method.HttpGet;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -46,7 +44,7 @@ public class Search {
                 "&start=" + start +
                 "&gws_rd=cr" +
                 "&hl=zh_CN";
-        HttpGet get = HttpGet.create(url);
+        /*HttpGet get = HttpGet.create(url);
         IndieParam ps = IndieParam.builder();
         get
                 .userAgent(UA.WindowsPhone7_5)
@@ -55,6 +53,20 @@ public class Search {
                 .result(new Result() {
                     @Override
                     public void success(String body, Response response) {
+
+                    }
+
+                    @Override
+                    public void error(String body, javax.ws.rs.core.Response response) {
+                        System.out.printf(body);
+                    }
+                });*/
+        HttpGet.create(url)
+                .userAgent(UserAgent.WP_75)
+                .exe()
+                .handle(new ResultHandler() {
+                    @Override
+                    public void success(HttpResponse response, String body) {
                         Document doc = response.readDom();
                         Elements rs = doc.getElementsByClass("g");
                         SingleResult sr = null;
@@ -89,8 +101,8 @@ public class Search {
                     }
 
                     @Override
-                    public void error(String body, javax.ws.rs.core.Response response) {
-                        System.out.printf(body);
+                    public void error(HttpResponse response, int code, String body) {
+
                     }
                 });
         return result;

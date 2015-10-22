@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>bluerain.io</groupId>
-    <artifactId>globr</artifactId>
+    <groupId>io.bluerain.globr</groupId>
+    <artifactId>globr-service-api</artifactId>
     <version>0.1.1-snapshot</version>
     <modules>
         <module>globr-web-service</module>
@@ -46,32 +46,37 @@
         <cors.version>2.4</cors.version>
 
         <!--本地依赖-->
-        <aclient.version>0.1.2-release</aclient.version>
+        <commons.version>1.0.1-SNAPSHOT</commons.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.bluerain.http</groupId>
+                <artifactId>rebr-client</artifactId>
+                <version>0.1.0-SNAPSHOT</version>
+            </dependency>
             <!--项目模块-->
             <dependency>
-                <groupId>bluerain.io</groupId>
+                <groupId>io.bluerain.globr</groupId>
                 <artifactId>globr-entity</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>bluerain.io</groupId>
+                <groupId>io.bluerain.globr</groupId>
                 <artifactId>globr-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>bluerain.io</groupId>
+                <groupId>io.bluerain.globr</groupId>
                 <artifactId>globr-web-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--aclient-->
+            <!--commons-->
             <dependency>
-                <groupId>io.bluerain.client</groupId>
-                <artifactId>aclient</artifactId>
-                <version>${aclient.version}</version>
+                <groupId>io.bluerain.utils</groupId>
+                <artifactId>commons</artifactId>
+                <version>${commons.version}</version>
             </dependency>
             <!-- swagger -->
             <dependency>

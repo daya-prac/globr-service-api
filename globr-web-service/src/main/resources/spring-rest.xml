@@ -26,7 +26,7 @@
 
     <!-- this scans the classes for resources -->
     <bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
-        <property name="basePath" value="http://localhost:8080/globr"/>
+        <property name="basePath" value="http://globr-api.bluerain.io"/>
         <property name="resourcePackage" value="io.bluerain.globr.web.rest"/>
         <property name="version" value="1.0.0"/>
         <property name="title" value="GloBr Web Service-UI-Docs-Testing"/>
