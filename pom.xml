@@ -44,6 +44,7 @@
         <qiniu.version>[7.0.0, 7.0.99]</qiniu.version>
         <jedis.version>2.7.2</jedis.version>
         <cors.version>2.4</cors.version>
+        <rebr-client.version>0.1.0-SNAPSHOT</rebr-client.version>
 
         <!--本地依赖-->
         <commons.version>1.0.1-SNAPSHOT</commons.version>
@@ -54,7 +55,7 @@
             <dependency>
                 <groupId>io.bluerain.http</groupId>
                 <artifactId>rebr-client</artifactId>
-                <version>0.1.0-SNAPSHOT</version>
+                <version>${rebr-client.version}</version>
             </dependency>
             <!--项目模块-->
             <dependency>
