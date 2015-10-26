@@ -36,7 +36,8 @@ public class Search {
         final SearchResult result = new SearchResult();
         final List<SingleResult> srs = new ArrayList<>();
         result.setList(srs);
-        startProxy();
+        //是否开启代理(本地开发)
+//        startProxy();
 
         String url = "https://www.google.com/search?" +
                 "q=" + keyword +

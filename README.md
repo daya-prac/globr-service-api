@@ -1,4 +1,4 @@
-GloBr-Service-Api
+GloBr Api
 ====
 
 ####提供Google API的服务端应用
@@ -12,7 +12,7 @@ GloBr-Service-Api
 [bluerain-commons](https://github.com/HentaiMew/bluerain-commons) |
 [rebr-client](https://github.com/HentaiMew/rebr-client.git)
 
-包含的是以下依赖项:
+如果要导入项目的话，需要包含的是以下本地依赖项:
 ```xml
 <dependency>
     <groupId>io.bluerain.utils</groupId>
@@ -25,3 +25,8 @@ GloBr-Service-Api
     <version>0.1.0-SNAPSHOT</version>
 </dependency>
 ```
+这里下载WAR文件以后可以直接丢进Tomcat/Jetty中运行。
+
+访问 http://yourdomain/globr/
+
+进入Swagger文档界面，在线测试以及参数/返回结构阅读等。
