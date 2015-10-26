@@ -23,9 +23,9 @@ public class SearchResource {
     @GET
     @ApiOperation(value = "根据关键字获取搜索结果")
     public Response index(@ApiParam(value = "关键字", defaultValue = "呵呵哒") @QueryParam("keyword") String keyword,
-                          @ApiParam(value = "页数", defaultValue = "1") @QueryParam("pagNum") Integer pagNUm) {
-        if (pagNUm == null)
-            pagNUm = 0;
-        return RepBuilder.build(Search.by(keyword, pagNUm));
+                          @ApiParam(value = "页数", defaultValue = "1") @QueryParam("pagNum") Integer pagNum) {
+        if (pagNum == null)
+            pagNum = 0;
+        return RepBuilder.build(Search.by(keyword, pagNum));
     }
 }

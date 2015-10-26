@@ -36,7 +36,7 @@ public class Search {
         final SearchResult result = new SearchResult();
         final List<SingleResult> srs = new ArrayList<>();
         result.setList(srs);
-//        startProxy();
+        startProxy();
 
         String url = "https://www.google.com/search?" +
                 "q=" + keyword +
@@ -44,23 +44,6 @@ public class Search {
                 "&start=" + start +
                 "&gws_rd=cr" +
                 "&hl=zh_CN";
-        /*HttpGet get = HttpGet.create(url);
-        IndieParam ps = IndieParam.builder();
-        get
-                .userAgent(UA.WindowsPhone7_5)
-                .param(ps)
-                .request()
-                .result(new Result() {
-                    @Override
-                    public void success(String body, Response response) {
-
-                    }
-
-                    @Override
-                    public void error(String body, javax.ws.rs.core.Response response) {
-                        System.out.printf(body);
-                    }
-                });*/
         HttpGet.create(url)
                 .userAgent(UserAgent.WP_75)
                 .exe()

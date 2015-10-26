@@ -40,4 +40,14 @@ public class SingleResult {
     public void setDomain(String domain) {
         this.domain = domain;
     }
+
+    @Override
+    public String toString() {
+        return "SingleResult{" +
+                "title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", content='" + content + '\'' +
+                ", domain='" + domain + '\'' +
+                '}';
+    }
 }

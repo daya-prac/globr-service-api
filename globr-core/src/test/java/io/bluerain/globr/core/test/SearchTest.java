@@ -2,6 +2,7 @@ package io.bluerain.globr.core.test;
 
 import io.bluerain.globr.core.Search;
 import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SearchResult;
+import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SingleResult;
 import org.junit.Test;
 
 /**
@@ -12,7 +13,7 @@ public class SearchTest {
 
     @Test
     public void testSearch() {
-        for (String r : Search.by("呵呵哒", 1).getRelatedKeys()) {
+        for (SingleResult r : Search.by("呵呵哒", 1).getList()) {
             System.out.println(r);
         }
     }
