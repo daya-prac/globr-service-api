@@ -9,9 +9,18 @@ import java.util.List;
  */
 public class SearchResult {
 
+    private Integer curPage;
     private List<SingleResult> list = new ArrayList<>();
     private List<String> relatedKeys = new ArrayList<>();
 
+
+    public Integer getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(Integer curPage) {
+        this.curPage = curPage;
+    }
 
     public List<String> getRelatedKeys() {
         return relatedKeys;

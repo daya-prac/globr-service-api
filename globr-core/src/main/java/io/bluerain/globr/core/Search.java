@@ -8,6 +8,7 @@ import io.bluerain.http.core.UserAgent;
 import io.bluerain.http.response.HttpResponse;
 import io.bluerain.http.rest.handler.ResultHandler;
 import io.bluerain.http.rest.method.HttpGet;
+import io.bluerain.type.RefInt;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -29,8 +30,9 @@ public class Search {
         return search.byKeyword(keyword, pagNum);
     }
 
-    public SearchResult byKeyword(String keyword, int pagNum) {
-        int start = getStart(pagNum);
+    public SearchResult byKeyword(String keyword, Integer pagNum) {
+        RefInt pn = RefInt.newInstance(pagNum);
+        int start = getStart(pn);
 
         //创建返回结果Bean结构
         final SearchResult result = new SearchResult();
@@ -73,7 +75,7 @@ public class Search {
                             srs.add(sr);
                         }
                         //获取相关关键字
-                        Elements relatedKeys = doc.getElementsByAttributeValue("valign", "top");
+                        Elements relatedKeys = doc.select("td[valign=top] > ._Bmc");
                         if (Obj.notNullOrEmpty(relatedKeys)) {
                             int index = 1;
                             for (Element keyStr : relatedKeys) {
@@ -89,6 +91,7 @@ public class Search {
 
                     }
                 });
+        result.setCurPage(pn.getValue());
         return result;
     }
 
@@ -98,7 +101,8 @@ public class Search {
         System.setProperty("socksProxyPort", "1080");
     }
 
-    private int getStart(int pagNum) {
+    private int getStart(RefInt pn) {
+        int pagNum = pn.getValue();
         int start;
         if (pagNum <= 1)
             pagNum = 1;
@@ -106,6 +110,7 @@ public class Search {
             start = 0;
         else
             start = (pagNum - 1) * 10;
+        pn.setValue(pagNum);
         return start;
     }
 

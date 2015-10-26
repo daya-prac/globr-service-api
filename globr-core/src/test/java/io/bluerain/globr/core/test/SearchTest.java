@@ -13,8 +13,14 @@ public class SearchTest {
 
     @Test
     public void testSearch() {
-        for (SingleResult r : Search.by("呵呵哒", 1).getList()) {
+        SearchResult result = Search.by("呵呵哒", 1);
+        for (SingleResult r : result.getList()) {
             System.out.println(r);
+        }
+
+        System.out.println(result.getRelatedKeys().size());
+        for (String relateKeys : result.getRelatedKeys()) {
+            System.out.println(relateKeys);
         }
     }
 }
