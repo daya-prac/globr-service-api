@@ -2,12 +2,17 @@ package io.bluerain.globr.core;
 
 import io.bluerain.core.Obj;
 import io.bluerain.core.Str;
+import io.bluerain.globr.core.utils.GooglePagin;
 import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SearchResult;
 import io.bluerain.globr.enties.bean.io.bluerain.globr.enties.SingleResult;
+import io.bluerain.http.core.Language;
+import io.bluerain.http.core.LinkedHttpMap;
 import io.bluerain.http.core.UserAgent;
 import io.bluerain.http.response.HttpResponse;
 import io.bluerain.http.rest.handler.ResultHandler;
 import io.bluerain.http.rest.method.HttpGet;
+import io.bluerain.proxy.Socks5;
+import io.bluerain.regex.SampleMatcher;
 import io.bluerain.type.RefInt;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,34 +25,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by foredawn on 15-8-22.
- * 抓取谷歌数据的核心类
+ * Created by hentai_mew on 15-8-22.
+ * 抓取谷歌搜索数据的核心类
  */
 public class Search {
 
     public static SearchResult by(String keyword, int pagNum) {
-        Search search = new Search();
-        return search.byKeyword(keyword, pagNum);
-    }
-
-    public SearchResult byKeyword(String keyword, Integer pagNum) {
         RefInt pn = RefInt.newInstance(pagNum);
-        int start = getStart(pn);
 
         //创建返回结果Bean结构
         final SearchResult result = new SearchResult();
         final List<SingleResult> srs = new ArrayList<>();
         result.setList(srs);
         //是否开启代理(本地开发)
-//        startProxy();
+//        Socks5.proxyLocalShadowsocks();
 
-        String url = "https://www.google.com/search?" +
-                "q=" + keyword +
-                "&safe=off&prmd=ivns" +
-                "&start=" + start +
-                "&gws_rd=cr" +
-                "&hl=zh_CN";
+        String url = "https://www.google.com/search";
+        LinkedHttpMap ps = LinkedHttpMap.builder()
+                .put("q", keyword)
+                .put("safe", "off")
+                .put("prmd", "ivns")
+                .put("start", GooglePagin.getStart(pn))
+                .put("gws_rd", "cr")
+                .put("hl", "zh_CN");
         HttpGet.create(url)
+                .queryParams(ps)
+                .language(Language.zh_CN)
                 .userAgent(UserAgent.WP_75)
                 .exe()
                 .handle(new ResultHandler() {
@@ -71,7 +74,7 @@ public class Search {
                             sr.setContent(contentDom.html());
                             if (sr.getLink() == null)
                                 continue;
-                            sr.setDomain(Str.match(sr.getLink(), "https?://([^/]+)", 1));
+                            sr.setDomain(SampleMatcher.marchDoaminFromUrl(sr.getLink()));
                             srs.add(sr);
                         }
                         //获取相关关键字
@@ -95,26 +98,7 @@ public class Search {
         return result;
     }
 
-    private void startProxy() {
-        System.setProperty("proxySet", "true");
-        System.setProperty("socksProxyHost", "127.0.0.1");
-        System.setProperty("socksProxyPort", "1080");
-    }
-
-    private int getStart(RefInt pn) {
-        int pagNum = pn.getValue();
-        int start;
-        if (pagNum <= 1)
-            pagNum = 1;
-        if (pagNum == 1)
-            start = 0;
-        else
-            start = (pagNum - 1) * 10;
-        pn.setValue(pagNum);
-        return start;
-    }
-
-    private String getRealLink(String href) {
+    private static String getRealLink(String href) {
 
         try {
             href = URLDecoder.decode(href, "UTF-8");

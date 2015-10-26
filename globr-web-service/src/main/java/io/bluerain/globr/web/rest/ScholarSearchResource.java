@@ -6,23 +6,26 @@ import com.wordnik.swagger.annotations.ApiParam;
 import io.bluerain.globr.core.Search;
 import io.bluerain.globr.web.core.RepBuilder;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
  * Created by foredawn on 15-8-22.
- * 搜索API资源.
+ * 学术搜索API资源.
  */
 
-@Api("搜索API")
+@Api("学术搜索API")
 @Produces(MediaType.APPLICATION_JSON)
-@Path("/api/search")
-public class SearchResource {
+@Path("/api/search/scholar")
+public class ScholarSearchResource {
 
     @GET
     @ApiOperation(value = "根据关键字获取搜索结果")
-    public Response index(@ApiParam(value = "关键字", defaultValue = "呵呵哒") @QueryParam("keyword") String keyword,
+    public Response index(@ApiParam(value = "关键字", defaultValue = "呵呵") @QueryParam("keyword") String keyword,
                           @ApiParam(value = "页码", defaultValue = "1") @QueryParam("pagNum") Integer pagNum) {
         if (pagNum == null)
             pagNum = 0;

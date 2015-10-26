@@ -22,6 +22,7 @@
     <!--resources-->
     <bean class="io.bluerain.globr.web.rest.TestResource"/>
     <bean class="io.bluerain.globr.web.rest.SearchResource"/>
+    <bean class="io.bluerain.globr.web.rest.ScholarSearchResource"/>
 
 
     <!-- this scans the classes for resources -->
