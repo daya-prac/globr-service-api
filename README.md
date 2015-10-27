@@ -1,7 +1,7 @@
 GloBr Api
 ====
 
-####GloBr是提供Google检索数据的服务端API应用
+####GloBr是提供Google数据检索的服务端API应用
 
 主要包括 谷歌搜索和谷歌学术搜索
 
