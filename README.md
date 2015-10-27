@@ -16,7 +16,10 @@ GloBr Api
 
 
 [这里下载WAR文件](http://7xl780.com1.z0.glb.clouddn.com/apps/globr/last/globr.war)以后可以直接丢进Tomcat/Jetty或者其他Servlet容器中运行。
-域名绑定：(修改globr.war中的/WEB-INF/classes/conf.properties文件)
+
+##### 部署步骤：
+
+1. 域名绑定：修改globr.war中的/WEB-INF/classes/conf.properties文件
 ````properties
 # 应用访问路径(不需要后缀"/")，如果globr直接绑定了域名，则直接填写域名：http://www.xxx.com
 # 本地开发一般是：
@@ -28,9 +31,11 @@ baseAppUrl=http://globr-api.bluerain.io
 localProxy=false
 ````
 
-启动容器，访问绑定好的域名，例如globr官方的:http://globr-api.bluerain.io
+2.启动容器，访问绑定好的域名，例如globr官方的:http://globr-api.bluerain.io/index
 
-即可进入Swagger的API文档界面，在线测试以及参数/返回结构阅读等。
+3.在首页的SwaggerAPI文档界面，验证在线测试以及参数/返回结构阅读等是否正常工作。
+
+##### 客户端开发的一些描述：
 
 负责储存结果的JavaBean结构:
 
