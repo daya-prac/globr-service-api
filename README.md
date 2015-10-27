@@ -137,7 +137,9 @@ public class SingleResult {
 }
 ````
 
-#### 官方API简述(可以自行去：http://globr-api.bluerain.io/index 测试)
+#### 官方API简述
+
+建议去可以自行去：http://globr-api.bluerain.io/index 测试
 
 NAME     |  URL
 -------  | -----------------------------------------------
