@@ -22,8 +22,7 @@ import org.jsoup.select.Elements;
  */
 public class ScholarSearch {
 
-    public void by(String keyword, int pagNum) {
-//        Socks5.proxyLocalShadowsocks();
+    public static SearchResult by(String keyword, int pagNum) {
         final SearchResult result = new SearchResult();
         RefInt refInt = RefInt.newInstance(pagNum);
         String url = "https://scholar.google.com/scholar";
@@ -31,8 +30,9 @@ public class ScholarSearch {
                 LinkedHttpMap.builder()
                         .put("start", GooglePagin.getStart(refInt))
                         .put("hl", "zh-CN")
+                        .put("btnG", "")
                         .put("q", keyword);
-        HttpGet.create(url)
+        String body = HttpGet.create(url)
                 .queryParams(ps)
                 .language(Language.zh_CN)
                 .userAgent(UserAgent.WP_75)
@@ -63,16 +63,18 @@ public class ScholarSearch {
                             sr.setDomain(SampleMatcher.marchDoaminFromUrl(sr.getLink()));
                             result.getList().add(sr);
                         }
-                        for (SingleResult r : result.getList()) {
-                            System.out.println(r);
-                        }
                     }
 
                     @Override
                     public void error(HttpResponse response, int code, String body) {
 
                     }
-                });
+                }).readBody();
         result.setCurPage(refInt.getValue());
+        SingleResult sr = new SingleResult();
+        sr.setTitle("输出HTML");
+        sr.setContent(body);
+        result.getList().add(sr);
+        return result;
     }
 }

@@ -32,13 +32,10 @@ public class Search {
 
     public static SearchResult by(String keyword, int pagNum) {
         RefInt pn = RefInt.newInstance(pagNum);
-
         //创建返回结果Bean结构
         final SearchResult result = new SearchResult();
         final List<SingleResult> srs = new ArrayList<>();
         result.setList(srs);
-        //是否开启代理(本地开发)
-//        Socks5.proxyLocalShadowsocks();
 
         String url = "https://www.google.com/search";
         LinkedHttpMap ps = LinkedHttpMap.builder()

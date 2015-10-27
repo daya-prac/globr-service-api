@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
  * 搜索API资源.
  */
 
-@Api("搜索API")
+@Api("网页搜索API")
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/api/search")
 public class SearchResource {

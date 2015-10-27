@@ -3,8 +3,12 @@ package io.bluerain.globr.web.rest;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import io.bluerain.globr.core.ScholarSearch;
 import io.bluerain.globr.core.Search;
+import io.bluerain.globr.web.core.ConfigInfo;
 import io.bluerain.globr.web.core.RepBuilder;
+import io.bluerain.proxy.Socks5;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -29,6 +33,6 @@ public class ScholarSearchResource {
                           @ApiParam(value = "页码", defaultValue = "1") @QueryParam("pagNum") Integer pagNum) {
         if (pagNum == null)
             pagNum = 0;
-        return RepBuilder.build(Search.by(keyword, pagNum));
+        return RepBuilder.build(ScholarSearch.by(keyword, pagNum));
     }
 }

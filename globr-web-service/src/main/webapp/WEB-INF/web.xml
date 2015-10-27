@@ -4,6 +4,10 @@
          id="WebApp_ID" version="3.0">
     <display-name>Restful Web Application</display-name>
 
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
     </listener>
@@ -21,6 +25,10 @@
         <servlet-name>resteasy-servlet</servlet-name>
         <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>index-servlet</servlet-name>
+        <servlet-class>io.bluerain.globr.web.servlet.IndexServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>resteasy-servlet</servlet-name>
@@ -29,6 +37,10 @@
     <servlet-mapping>
         <servlet-name>resteasy-servlet</servlet-name>
         <url-pattern>/api-docs/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>index-servlet</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
     <!-- 定义Filter -->
     <filter>

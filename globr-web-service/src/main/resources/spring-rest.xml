@@ -24,10 +24,14 @@
     <bean class="io.bluerain.globr.web.rest.SearchResource"/>
     <bean class="io.bluerain.globr.web.rest.ScholarSearchResource"/>
 
+    <!--加载常量配置文件-->
+    <bean id="propConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:conf.properties"/>
+    </bean>
 
     <!-- this scans the classes for resources -->
     <bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
-        <property name="basePath" value="http://globr-api.bluerain.io"/>
+        <property name="basePath" value="${baseAppUrl}"/>
         <property name="resourcePackage" value="io.bluerain.globr.web.rest"/>
         <property name="version" value="1.0.0"/>
         <property name="title" value="GloBr Web Service-UI-Docs-Testing"/>
