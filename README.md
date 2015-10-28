@@ -55,31 +55,8 @@ public class SearchResult {
      * 有联系的关键字列表
      */
     private List<String> relatedKeys = new ArrayList<>();
-
-
-    public Integer getCurPage() {
-        return curPage;
-    }
-
-    public void setCurPage(Integer curPage) {
-        this.curPage = curPage;
-    }
-
-    public List<String> getRelatedKeys() {
-        return relatedKeys;
-    }
-
-    public void setRelatedKeys(List<String> relatedKeys) {
-        this.relatedKeys = relatedKeys;
-    }
-
-    public List<SingleResult> getList() {
-        return list;
-    }
-
-    public void setList(List<SingleResult> list) {
-        this.list = list;
-    }
+    
+    //getter&settter略
 }
 ````
 2. SingleResult
@@ -102,38 +79,8 @@ public class SingleResult {
      * 结果域名
      */
     private String domain;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getDomain() {
-        return domain;
-    }
-
-    public void setDomain(String domain) {
-        this.domain = domain;
-    }
+    
+    //getter&settter略
 }
 ````
 
